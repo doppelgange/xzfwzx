@@ -10,6 +10,7 @@ var wssb = require('./routes/wssb');
 var bgxz = require('./routes/bgxz');
 var auth = require('./routes/auth');
 var ht = require('./routes/ht');
+var department = require('./routes/department');
 
 
 
@@ -35,6 +36,8 @@ app.use('/api/wssb', wssb);
 app.use('/api/bgxz', bgxz);
 app.use('/api/auth', auth);
 app.use('/api/ht', ht);
+app.use('/api/department', department);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
