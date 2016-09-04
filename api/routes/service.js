@@ -28,7 +28,7 @@ router.get('/', function(req, res, next) {
 
 		var departmentCount = 0
 
-		var departments = $('.selectTag1').scrape({
+		var services = $('.selectTag1').scrape({
 			category_name : function(){
 				// console.log($(this).parents('div.tab_cont.cl').prev().find('li').text())
 				var text = $(this).parents('div.tab_cont.cl').prev().find('li').eq(departmentCount).text()
@@ -89,25 +89,9 @@ router.get('/', function(req, res, next) {
 		})
 
 
-		writeDataToFile({name : 'departments',data: departments})
-		res.json(departments)
+		writeDataToFile({name : 'services',data: services})
+		res.json(services)
   })
 })
 
-
-function writeDataToFile(options){
-	// fs.writeFile(options.filename, options.data, (err) => {
-	//   if (err) throw err;
-	//   console.log('It\'s saved!');
-	// });
-
-
-	fs.writeFile('../../config/current/store/departments.js', 'abc', function (err,data) {
-	  if (err) {
-	    return console.log(err);
-	  }
-	  console.log(data);
-	});
-
-}
 module.exports = router

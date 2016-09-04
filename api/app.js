@@ -10,7 +10,7 @@ var wssb = require('./routes/wssb');
 var bgxz = require('./routes/bgxz');
 var auth = require('./routes/auth');
 var ht = require('./routes/ht');
-var department = require('./routes/department');
+var service = require('./routes/service');
 var debug = require('./routes/debug');
 
 
@@ -36,7 +36,7 @@ app.use('/api/wssb', wssb);
 app.use('/api/bgxz', bgxz);
 app.use('/api/auth', auth);
 app.use('/api/ht', ht);
-app.use('/api/department', department);
+app.use('/api/service', service);
 app.use('/api/debug', debug);
 
 // catch 404 and forward to error handler
