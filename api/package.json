@@ -1,7 +1,7 @@
 {
-  "name": "xzfwzx_api",
+  "name": "xzfwzx api",
   "version": "1.0.0",
-  "description": "api for xzfwzx",
+  "description": "咸宁行政服务中心系列网站 API",
   "author": "Bob Sun",
   "private": true,
   "scripts": {
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/doppelgange/xzfwzx_api.git"
+    "url": "git+ssh://git@github.com/doppelgange/xzfwzx.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/doppelgange/xzfwzx_api/issues"
+    "url": "https://github.com/doppelgange/xzfwzx/issues"
   },
-  "homepage": "https://github.com/doppelgange/xzfwzx_api#readme",
+  "homepage": "https://github.com/doppelgange/xzfwzx#readme",
   "dependencies": {
     "artoo-js": "^0.3.2",
     "body-parser": "^1.15.2",
