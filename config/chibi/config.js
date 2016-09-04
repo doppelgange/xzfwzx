@@ -49,6 +49,13 @@ module.exports = function() {
 	  			items: '.table_02 tr',
 	  			summary : /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
 	  		}
+	  	},
+	  	wssb :{
+	  		index : {
+	  			items: '.table_02 tr.tl',
+	  			page: '.page_1',
+	  			summary : /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
+	  		}
 	  	}
 	  }
 	}

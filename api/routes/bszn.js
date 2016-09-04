@@ -10,9 +10,6 @@ var config = new Config()
 
 
 var data = []
-var host = 'http://www.xnxzfwzx.gov.cn'
-var path = '/bsznpermissionitem/%s.jspx'
-var detailPath = '/jy_lawguide/%s.jspx'
 var url = ''
 
 /* Department list */

@@ -5,18 +5,18 @@ var artoo = require('artoo-js')
 cheerio = require('cheerio')
 var request = require('request')
 artoo.bootstrap(cheerio)
+var Config = require('../../config/current/config')
+var config = new Config()
 var data = []
-var host = 'http://www.xnxzfwzx.gov.cn'
-var path = '/wssb/%s.jspx'
 var url = ''
 
 
 /* GET  listing. */
 router.get('/:id', function(req, res, next) {
 	if(req.query.category=='bm'){
-		url = host + util.format(path, req.params.id)
+		url = util.format(config.getUrl('url.wssb.department.bm'), req.params.id)
 	}else{
-		url = host + '/wssb_list_Sort.jspx'
+		url = config.getUrl('url.wssb.department.gr')
 	}
 	var pageNo = req.query.pageNo ? req.query.pageNo : 1 
 
@@ -25,7 +25,7 @@ router.get('/:id', function(req, res, next) {
   		form:{
   			type: req.query.category,
 				pageNo: pageNo,
-				areaId: 421201,
+				areaId: config.get('areaId'),
 				deptid: req.params.id,
 				sortcode: req.params.id
   		}
@@ -33,7 +33,7 @@ router.get('/:id', function(req, res, next) {
   	function(error, response, html){
 	  if(!error){
 			var $ = cheerio.load(html)
-			var items = $('.table_02 tr.tl').scrape({
+			var items = $(config.get('match.bszn.index.items')).scrape({
 				name : function() {
 					return $(this).find('td').eq(0).attr('title')
 				},
@@ -52,10 +52,10 @@ router.get('/:id', function(req, res, next) {
 			})
 
 			var summary = {}
-			var raw = $('.page_1').text()
+			var raw = $(config.get('match.bszn.index.page')).text()
 			console.log(raw)
 			if(raw){
-				var re = /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
+				var re = config.get('match.bszn.index.summary')
 				var m = raw.match(re)
 				console.log(m.length)
 
