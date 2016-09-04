@@ -5,6 +5,10 @@ var artoo = require('artoo-js')
 cheerio = require('cheerio')
 var request = require('request')
 artoo.bootstrap(cheerio)
+var Config = require('../../config/current/config')
+var config = new Config()
+
+
 var data = []
 var host = 'http://www.xnxzfwzx.gov.cn'
 var path = '/bsznpermissionitem/%s.jspx'
@@ -14,9 +18,9 @@ var url = ''
 /* Department list */
 router.get('/:id', function(req, res, next) {
 	if(req.query.category=='bm'){
-		url = host + util.format(path, req.params.id)
+		url = util.format(config.getUrl('url.bszn.department.bm'), req.params.id)
 	}else{
-		url = host + '/bszn_list_Sort.jspx'
+		url = config.getUrl('url.bszn.department.gr')
 	}
 	var pageNo = req.query.pageNo ? req.query.pageNo : 1 
 
@@ -25,7 +29,7 @@ router.get('/:id', function(req, res, next) {
   		form:{
   			type: req.query.category,
 				pageNo: pageNo,
-				areaId: 421201,
+				areaId: config.get('areaId'),
 				deptid: req.params.id,
 				sortcode: req.params.id
   		}
@@ -33,7 +37,7 @@ router.get('/:id', function(req, res, next) {
   	function(error, response, html){
 	  if(!error){
 			var $ = cheerio.load(html)
-			var items = $('.table_02 tr').scrape({
+			var items = $(config.get('match.bszn.index.items')).scrape({
 				line_num : function() {
 					return $(this).find('td').eq(0).text()
 				},
@@ -57,7 +61,7 @@ router.get('/:id', function(req, res, next) {
 			var summary = {}
 			if(items.length > 1 ){
 				var raw = items[items.length - 1].line_num
-				var re = /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
+				var re = config.get('match.bszn.index.summary')
 				// var re = /共\s*?(\d*?)\s*?条/i
 				var m = raw.match(re)
 				console.log(m.length)
@@ -84,7 +88,7 @@ router.get('/:id', function(req, res, next) {
 
 // Get 事项
 router.get('/detail/:id', function(req, res, next) {
-	var url = host + util.format(detailPath, req.params.id)
+	var url = util.format(config.getUrl('url.bszn.detail'), req.params.id)
 	console.log(url)
   request.get({ url:url },
   	function(error, response, html){

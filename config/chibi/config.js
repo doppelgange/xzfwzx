@@ -9,11 +9,11 @@ module.exports = function() {
 	  	bszn : {
 	  		index : 'bsznindex.jspx',
 	  		department: {
-	  			bm: '/bsznpermissionitem2/%s.jspx',
+	  			bm: 'bsznpermissionitem2/%s.jspx',
 	  			gr: 'bszn_list_Sort.jspx',
 	  			qy: 'bszn_list_Sort.jspx'
 	  		},
-	  		detail: '/bsznpermissionitem2/%s.jspx'
+	  		detail: 'jy_lawguide/%s.jspx'
 	  	},
 	  	blcx : {
 	  		index: 'blcxindex.jspx',
@@ -39,11 +39,15 @@ module.exports = function() {
 	  		detail: '/wssb/matter.jspx?sxid=%s'
 	  	}
 	  },
-	  regex: {
+	  match: {
 	  	bszn :{
 	  		department : {
 	  			category_code : /type=(.{2})/i,
 	  			service_item_id: /(?:bsznpermissionitem.*\/|sortcode=)(.*?)(?:.jspx|&)/i
+	  		},
+	  		index : {
+	  			items: '.table_02 tr',
+	  			summary : /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
 	  		}
 	  	}
 	  }

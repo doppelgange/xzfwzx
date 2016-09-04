@@ -6,9 +6,10 @@ cheerio = require('cheerio')
 var request = require('request')
 var entities = require('entities')
 artoo.bootstrap(cheerio)
-var data = []
 var Config = require('../../config/current/config')
 var config = new Config()
+var fs = require('fs')
+var writeDataToFile = require('../helper/writeDataToFile')
 
 // Department list
 router.get('/', function(req, res, next) {
@@ -27,7 +28,7 @@ router.get('/', function(req, res, next) {
 
 		var departmentCount = 0
 
-		var department = $('.selectTag1').scrape({
+		var departments = $('.selectTag1').scrape({
 			category_name : function(){
 				// console.log($(this).parents('div.tab_cont.cl').prev().find('li').text())
 				var text = $(this).parents('div.tab_cont.cl').prev().find('li').eq(departmentCount).text()
@@ -36,8 +37,8 @@ router.get('/', function(req, res, next) {
 			},
 			category_code : function(){
       	var url = $(this).find('ul.servie li a').eq(0).attr('href')
-      	// console.log(config.get('regex.bszn.department.category_code'))
-      	var re = config.get('regex.bszn.department.category_code')  ///type=(.{2})/i 
+      	// console.log(config.get('match.bszn.department.category_code'))
+      	var re = config.get('match.bszn.department.category_code')  ///type=(.{2})/i 
 				if(url){
 					var m = url.match(re)
 					if(m){
@@ -64,7 +65,7 @@ router.get('/', function(req, res, next) {
 			          data: {
 			            id : function(){
 										var url = $(this).attr('href')
-										var re = config.get('regex.bszn.department.service_item_id') //  /(?:bsznpermissionitem.*\/|sortcode=)(.*?)(?:.jspx|&)/i
+										var re = config.get('match.bszn.department.service_item_id') //  /(?:bsznpermissionitem.*\/|sortcode=)(.*?)(?:.jspx|&)/i
 										if(url){
 											var m = url.match(re)
 											if(m){
@@ -86,10 +87,27 @@ router.get('/', function(req, res, next) {
         }
       }
 		})
-		res.json(department)
+
+
+		writeDataToFile({name : 'departments',data: departments})
+		res.json(departments)
   })
 })
 
 
+function writeDataToFile(options){
+	// fs.writeFile(options.filename, options.data, (err) => {
+	//   if (err) throw err;
+	//   console.log('It\'s saved!');
+	// });
 
+
+	fs.writeFile('../../config/current/store/departments.js', 'abc', function (err,data) {
+	  if (err) {
+	    return console.log(err);
+	  }
+	  console.log(data);
+	});
+
+}
 module.exports = router
