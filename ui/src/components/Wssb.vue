@@ -1,7 +1,7 @@
 <template>
   <div>
     <tab :line-width="2">
-      <tab-item :selected="currentCategory === item" v-for="item in categories" @click="currentCategory = item"> {{item.category.name}}</tab-item>
+      <tab-item :selected="currentCategory === item" v-for="item in categories" @click="currentCategory = item"> {{item.category_name}}</tab-item>
     </tab>
     <div class="conents">
       <group :title="service.service_name" v-for="service in currentCategory.services">
@@ -9,8 +9,8 @@
         value="查看列表" 
         is-link 
         v-for="item in service.service_items"
-        v-link="{name:'wssb.show', params:{id: item.id} , query:{ category: currentCategory.category.code} }"
-        @click ="prepareForNextPage({department:item,category:currentCategory.category})"
+        v-link="{name:'wssb.show', params:{id: item.id} , query:{ category: currentCategory.category_code} }"
+        @click ="prepareForNextPage({department:item})"
         ></cell>
       </group>
     </div>

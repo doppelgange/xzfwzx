@@ -2,7 +2,7 @@
   <div class="homepage">
     <div class="title">
       <img class="logo" src="../assets/icons/szfwzx.svg">
-      <h1> 咸宁市政务服务中心 </h1>
+      <h1> {{govInfo.homepageTitle}}</h1>
     </div>
     <flexbox>
       <flexbox-item>
@@ -49,6 +49,9 @@ export default {
     }
   },
   vuex: {
+    getters: {
+      govInfo: (state) => state.govInfo
+    },
     actions: {
       updatePageTitle
     }

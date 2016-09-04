@@ -11,8 +11,8 @@ var config = new Config()
 var fs = require('fs')
 var writeDataToFile = require('../helper/writeDataToFile')
 
-// Department list
-router.get('/', function(req, res, next) {
+
+var syncServices = function (req, res, next) {
 	var url = config.getUrl('url.bszn.index')
   request.get( { url: url }, function(error, response, html){
 	  if(error) {
@@ -51,7 +51,7 @@ router.get('/', function(req, res, next) {
 					return ''
 				}
 			},
-		  items: {
+		  services: {
         scrape: {
           iterator: 'ul.servie', //'div:not(.cl)',
           data: {
@@ -87,11 +87,27 @@ router.get('/', function(req, res, next) {
         }
       }
 		})
-
-
 		writeDataToFile({name : 'services',data: services})
 		res.json(services)
   })
+}
+
+
+
+// Department list
+router.get('/sync',syncServices)
+
+router.get('/list', function(req, res, next) {	
+	fs.readFile('../config/current/store/services.js', 'utf8', function (err,data) {
+	  if (err) {
+	  	syncServices(req, res, next)
+	  }else{
+	  	// console.log(data);
+	  	res.json(JSON.parse(data))
+	  }
+	  
+	});
+	
 })
 
 module.exports = router

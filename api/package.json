@@ -1,7 +1,7 @@
 {
-  "name": "xnxzfwzx_api",
+  "name": "xzfwzx_api",
   "version": "1.0.0",
-  "description": "api for xnxzfwzx",
+  "description": "api for xzfwzx",
   "author": "Bob Sun",
   "private": true,
   "scripts": {
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/doppelgange/xnxzfwzx_api.git"
+    "url": "git+ssh://git@github.com/doppelgange/xzfwzx_api.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/doppelgange/xnxzfwzx_api/issues"
+    "url": "https://github.com/doppelgange/xzfwzx_api/issues"
   },
-  "homepage": "https://github.com/doppelgange/xnxzfwzx_api#readme",
+  "homepage": "https://github.com/doppelgange/xzfwzx_api#readme",
   "dependencies": {
     "artoo-js": "^0.3.2",
     "body-parser": "^1.15.2",

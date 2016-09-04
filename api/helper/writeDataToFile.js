@@ -1,5 +1,4 @@
 var fs = require('fs')
-
 // name
 // data
 
@@ -13,6 +12,7 @@ module.exports = function (options){
 	if (!fs.existsSync(dir)){
 	    fs.mkdirSync(dir);
 	}
+	// JSON.stringify(options.data, null, 2)
 
 	fs.writeFile(filename, JSON.stringify(options.data, null, 2), function (err,data) {
 	  if (err) {

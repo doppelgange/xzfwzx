@@ -23,6 +23,7 @@
 import store from './vuex/store'
 import { Loading, ViewBox, XHeader } from 'vux-c'
 import BottomNav from './components/BottomNav'
+import { updateCategories } from './vuex/actions'
 
 export default {
   components: {
@@ -36,12 +37,24 @@ export default {
     getters: {
       isLoading: (state) => state.isLoading,
       direction: (state) => state.direction,
-      pageTitle: (state) => state.pageTitle
+      pageTitle: (state) => state.pageTitle,
+      categories: (state) => state.categories,
+      govInfo: (state) => state.govInfo
+    },
+    actions: {
+      updateCategories
     }
   },
   methods: {
     scrollTop () {
       this.$refs.viewBox.$els.viewBoxBody.scrollTop = 0
+    },
+    getCategories () {
+      this.$http.get('/api/service/list/').then((response) => {
+        this.updateCategories(response.data)
+      }, (response) => {
+        console.log(response)
+      })
     }
   },
   computed: {
@@ -54,12 +67,13 @@ export default {
       return this.direction === 'forward' ? 'vux-header-fade-in-right' : 'vux-header-fade-in-left'
     },
     loadingText: function () {
-      var loadingTextPool = {
-        0: '让数据多跑腿<br/>群众少跑路',
-        1: '云上咸宁<br/>政务办事不跑路，不求人'
-      }
+      var loadingTextPool = this.govInfo.slogen
       return loadingTextPool[ Math.floor((Math.random() * 2)) ]
     }
+  },
+  created () {
+    this.getCategories()
+    document.title = this.govInfo.websiteTitle
   }
 }
 </script>
