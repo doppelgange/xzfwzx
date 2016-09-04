@@ -84,7 +84,7 @@ module.exports = function () {
     }
   }
 
-  this.get = (attrPath) => {
+  this.get = function(attrPath){
     var arr = attrPath.split('.')
     var obj = this.options
     while (arr.length) {
@@ -93,7 +93,7 @@ module.exports = function () {
     return obj
   }
 
-  this.getUrl = (attrPath) => {
+  this.getUrl = function(attrPath){
     var url = this.get(attrPath)
     return (typeof url === 'string') ? this.get('host') + url : ''
   }
