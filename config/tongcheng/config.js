@@ -20,7 +20,7 @@ module.exports = function () {
       bszn: {
         index: 'bsznindex.jspx',
         department: {
-          bm: 'bsznpermissionitem2/%s.jspx',
+          bm: 'bsznpermissionitem/%s.jspx',
           gr: 'bszn_list_Sort.jspx',
           qy: 'bszn_list_Sort.jspx'
         },

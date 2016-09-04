@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Config from '../config'
+import Config from '../../../config/current/config'
 var config = new Config()
 Vue.use(Vuex)
 
