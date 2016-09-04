@@ -6,18 +6,18 @@ cheerio = require('cheerio')
 var request = require('request')
 var entities = require('entities')
 artoo.bootstrap(cheerio)
+var Config = require('../../config/current/config')
+var config = new Config()
+
 var data = []
-var host = 'http://www.xnxzfwzx.gov.cn'
-var path =  '/tableListByDept/%s.jspx'
-var detailPath = '/download/%s.jspx'
 var url = ''
 
 /* Department list */
 router.get('/:id', function(req, res, next) {
 	if(req.query.category=='bm'){
-		url = host + util.format(path, req.params.id)
+		url = util.format(config.getUrl('url.bgxz.department.bm'), req.params.id)
 	}else{
-		url = host + '/table_list_Sort.jspx'
+		url = config.getUrl('url.bgxz.department.gr')
 	}
 	var pageNo = req.query.pageNo ? req.query.pageNo : 1 
 
@@ -26,7 +26,7 @@ router.get('/:id', function(req, res, next) {
   		form:{
   			type: req.query.category,
 				pageNo: pageNo,
-				areaid: 421201,
+				areaid: config.get('areaId'),
 				deptid: req.params.id,
 				sortcode: req.params.id,
 				selname: ''
@@ -35,7 +35,7 @@ router.get('/:id', function(req, res, next) {
   	function(error, response, html){
 	  if(!error){
 			var $ = cheerio.load(html)
-			var items = $('.table_02 tr.td').scrape({
+			var items = $(config.get('match.bgxz.index.items')).scrape({
 				line_num : function() {
 					return $(this).find('td').eq(0).text()
 				},
@@ -51,7 +51,7 @@ router.get('/:id', function(req, res, next) {
 				code : function() {
 					var url = $(this).find('td').eq(3).find('a').attr('href')
 					console.log(url)
-					var re = /download\/(.*?)\.jspx/i
+					var re = config.get('match.bgxz.index.item_code')
 					if(url){
 						var m = url.match(re)
 						return m.length === 2 ? m[1] : ''
@@ -64,9 +64,9 @@ router.get('/:id', function(req, res, next) {
 			})
 
 			var summary = {}
-			var raw = $('.page_1').text()
+			var raw = $(config.get('match.bgxz.index.page')).text()
 			if(raw){
-				var re = /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
+				var re = config.get('match.bgxz.index.summary')
 				var m = raw.match(re)
 
 				if(m.length == 5){
@@ -91,13 +91,13 @@ router.get('/:id', function(req, res, next) {
 
 
 router.get('/detail/:id', function(req, res, next) {
-	url = host + util.format(detailPath, req.params.id)
+	url = util.format(config.getUrl('url.bgxz.detail'), req.params.id)
   request.get({ url: url },
   	function(error, response, html){
 	  if(!error){
 			var $ = cheerio.load(html)
 
-			var items = $('.table02').scrape({
+			var items = $(config.get('match.bgxz.detail.items')).scrape({
 				title: {
 			    sel: 'tr.ta',
 			    methods: 'text'
@@ -117,7 +117,7 @@ router.get('/detail/:id', function(req, res, next) {
 								var raw = entities.decodeHTML($(this).find('td').eq(1).html())
 								console.log(raw)
 								if(raw){
-									var re = /download\('(.*?)','(.*?)','(.*?)','(.*?)'/i
+									var re = config.get('match.bgxz.detail.file')
 									var m = raw.match(re)
 									console.log(raw)
 									console.log(m)

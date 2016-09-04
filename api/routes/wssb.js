@@ -33,7 +33,7 @@ router.get('/:id', function(req, res, next) {
   	function(error, response, html){
 	  if(!error){
 			var $ = cheerio.load(html)
-			var items = $(config.get('match.bszn.index.items')).scrape({
+			var items = $(config.get('match.wssb.index.items')).scrape({
 				name : function() {
 					return $(this).find('td').eq(0).attr('title')
 				},
@@ -52,10 +52,10 @@ router.get('/:id', function(req, res, next) {
 			})
 
 			var summary = {}
-			var raw = $(config.get('match.bszn.index.page')).text()
+			var raw = $(config.get('match.wssb.index.page')).text()
 			console.log(raw)
 			if(raw){
-				var re = config.get('match.bszn.index.summary')
+				var re = config.get('match.wssb.index.summary')
 				var m = raw.match(re)
 				console.log(m.length)
 

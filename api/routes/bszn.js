@@ -8,7 +8,6 @@ artoo.bootstrap(cheerio)
 var Config = require('../../config/current/config')
 var config = new Config()
 
-
 var data = []
 var url = ''
 

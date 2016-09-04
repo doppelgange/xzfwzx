@@ -56,6 +56,18 @@ module.exports = function() {
 	  			page: '.page_1',
 	  			summary : /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
 	  		}
+	  	},
+	  	bgxz :{
+	  		index : {
+	  			items: '.table_02 tr.td',
+	  			item_code : /download\/(.*?)\.jspx/i,
+	  			page: '.page_1',
+	  			summary : /共\s*?(\d*?)\s*?条[^]+?每页\s*?(\d*?)\s*?条[^]+?当前\s*?(\d*?)\/(\d*?)\s/i
+	  		},
+	  		detail: {
+	  			items: '.table02',
+	  			file : /download\('(.*?)','(.*?)','(.*?)','(.*?)'/i,
+	  		}
 	  	}
 	  }
 	}
