@@ -34,7 +34,7 @@ router.get('/:id', function(req, res, next) {
   	},
   	function(error, response, html){
 	  if(!error){
-			var $ = cheerio.load(html)
+			var $ = cheerio.load(html,{normalizeWhitespace: true })
 			var items = $(config.get('match.bgxz.index.items')).scrape({
 				line_num : function() {
 					return $(this).find('td').eq(0).text()
@@ -95,7 +95,7 @@ router.get('/detail/:id', function(req, res, next) {
   request.get({ url: url },
   	function(error, response, html){
 	  if(!error){
-			var $ = cheerio.load(html)
+			var $ = cheerio.load(html,{normalizeWhitespace: true })
 
 			var items = $(config.get('match.bgxz.detail.items')).scrape({
 				title: {
@@ -125,6 +125,9 @@ router.get('/detail/:id', function(req, res, next) {
 										file['file_id'] = m[1]
 										file['download_id'] = m[2]
 										file['department_id'] = m[3]
+										file['download_url'] = util.format(config.getUrl('url.bgxz.file'), m[1])
+
+										m[2] 
 									}
 								}
 								return file

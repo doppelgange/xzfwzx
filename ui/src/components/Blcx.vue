@@ -21,7 +21,7 @@
         :value.sync="bsrxm"
         placeholder="请输入申报人姓名"></x-input>
       <box gap="10px 10px">
-        <a :href="'http://www.xnxzfwzx.gov.cn/doSearch.jspx?bid=' + bid + '&bsrxm=' + bsrxm" class="link">
+        <a :href=" govInfo.host + 'doSearch.jspx?bid=' + bid + '&bsrxm=' + bsrxm" class="link">
         <x-button 
           type="primary"
         >查询</x-button>
@@ -58,7 +58,8 @@ export default {
   },
   vuex: {
     getters: {
-      categories: (state) => state.categories
+      categories: (state) => state.categories,
+      govInfo: (state) => state.govInfo
     },
     actions: {
       updatePageTitle

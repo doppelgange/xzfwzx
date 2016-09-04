@@ -48,6 +48,9 @@ router.get('/:id', function(req, res, next) {
 				},
 				zxsb_url : function() {
 					return $(this).find('td').eq(4).find('a').attr('href')
+				},
+				zxsb_full_url : function() {
+					return config.get('host').replace(/\/$/,'') + $(this).find('td').eq(4).find('a').attr('href')
 				}
 			})
 

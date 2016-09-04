@@ -7,7 +7,7 @@
           value="下载"
           is-link 
           v-if="item.file.file_id"
-          :link="'http://www.xnxzfwzx.gov.cn/servlet/downloadFileServlet?fileNo=' + item.file.file_id" 
+          :link="item.file.download_url" 
         ></cell>
         <div v-else>
           <divider> {{item.label}}</divider>

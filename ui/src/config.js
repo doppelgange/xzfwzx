@@ -10,7 +10,8 @@ module.exports = function () {
       slogen: {
         0: '让数据多跑腿<br/>群众少跑路',
         1: '云上赤壁<br/>政务办事不跑路，不求人'
-      }
+      },
+      host: 'http://www.cbxzfw.gov.cn/'
     },
     areaId: 421281,
     host: 'http://www.cbxzfw.gov.cn/',
