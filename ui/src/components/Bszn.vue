@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="currentCategory">
     <tab :line-width="2">
       <tab-item :selected="currentCategory === item" v-for="item in categories" @click="currentCategory = item"> {{item.category_name}}</tab-item>
     </tab>
@@ -32,8 +32,15 @@ export default {
   },
   data: function () {
     return {
-      currentCategory: this.categories[0],
-      categories: this.categories
+      currentCategory: this.categories[0]
+    }
+  },
+  watch: {
+    categories: function (val, oldVal) {
+      if (!this.currentCategory) {
+        this.currentCategory = this.categories[0]
+      }
+      console.log('new: %s, old: %s', val, oldVal)
     }
   },
   vuex: {
