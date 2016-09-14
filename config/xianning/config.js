@@ -43,7 +43,7 @@ module.exports = function () {
       wssb: {
         index: 'wssbindex.jspx',
         department: {
-          bm: 'wssb2/%s.jspx',
+          bm: 'wssb/%s.jspx',
           gr: 'wssb_list_Sort.jspx',
           // 'wssb_list_Sort.jspx?sortcode=001001008&areaid=421281&type=gr'
           qy: 'wssb_list_Sort.jspx'
