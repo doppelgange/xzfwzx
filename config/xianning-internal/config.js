@@ -14,7 +14,7 @@ module.exports = function () {
       host: 'http://www.xnxzfwzx.gov.cn/'
     },
     areaId: 421201,
-    host: '10.10.10.3:9015/',// 'http://www.xnxzfwzx.gov.cn/',
+    host: 'http://10.10.10.3:9015/',// 'http://www.xnxzfwzx.gov.cn/',
     port: 3000,
     url: {
       bszn: {
