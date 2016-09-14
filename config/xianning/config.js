@@ -33,7 +33,7 @@ module.exports = function () {
       bgxz: {
         index: 'tableindex.jspx',
         department: {
-          bm: 'tableListByDept2/%s.jspx',
+          bm: 'tableListByDept/%s.jspx',
           gr: 'table_list_Sort.jspx',
           qy: 'table_list_Sort.jspx'
         },
