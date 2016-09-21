@@ -84,7 +84,7 @@ module.exports = function () {
     }
   }
 
-  this.get = (attrPath) => {
+  this.get = function(attrPath) {
     var arr = attrPath.split('.')
     var obj = this.options
     while (arr.length) {
