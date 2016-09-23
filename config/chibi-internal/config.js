@@ -14,7 +14,7 @@ module.exports = function () {
       host: 'http://www.cbxzfw.gov.cn/'
     },
     areaId: 421281,
-    host: 'http://10.10.10.4:9063',
+    host: 'http://10.10.10.4:9063/',
     port: 3001,
     url: {
       bszn: {
