@@ -5,7 +5,7 @@
         value="申报" 
         is-link 
         v-for="item in items"
-        :link="item.zxsb_full_url" 
+        :link="govInfo.host + item.zxsb_url" 
       ></cell>
       <toast :show.sync="noResult" :time="1000" type="text">没有查询到相关下载</toast>
       <box gap="10px 10px">
@@ -48,6 +48,7 @@ export default {
   },
   vuex: {
     getters: {
+      govInfo: (state) => state.govInfo,
       formData: (state) => state.formData
     },
     actions: {
