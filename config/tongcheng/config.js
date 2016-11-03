@@ -11,16 +11,16 @@ module.exports = function () {
         0: '让数据多跑腿<br/>群众少跑路',
         1: '云上通城<br/>政务办事不跑路，不求人'
       },
-      host: 'http://www.tczw.com/'
+      host: 'http://zwzx.zgtc.gov.cn/'
     },
     areaId: 421222,
-    host: 'http://www.tczw.com/',
+    host: 'http://zwzx.zgtc.gov.cn/',
     port: 3003,
     url: {
       bszn: {
         index: 'bsznindex.jspx',
         department: {
-          bm: 'bsznpermissionitem/%s.jspx',
+          bm: 'bsznpermissionitem2/%s.jspx',
           gr: 'bszn_list_Sort.jspx',
           qy: 'bszn_list_Sort.jspx'
         },
