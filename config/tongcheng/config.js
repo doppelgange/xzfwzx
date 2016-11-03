@@ -93,7 +93,7 @@ module.exports = function () {
     return obj
   }
 
-  this.getUrl = (attrPath) => {
+  this.getUrl = function(attrPath){
     var url = this.get(attrPath)
     return (typeof url === 'string') ? this.get('host') + url : ''
   }
