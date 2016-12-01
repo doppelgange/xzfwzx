@@ -20,7 +20,7 @@ module.exports = function () {
       bszn: {
         index: 'bsznindex.jspx',
         department: {
-          bm: 'bsznpermissionitem/%s.jspx',
+          bm: 'bsznpermissionitem2/%s.jspx',
           gr: 'bszn_list_Sort.jspx',
           qy: 'bszn_list_Sort.jspx'
         },
@@ -33,7 +33,7 @@ module.exports = function () {
       bgxz: {
         index: 'tableindex.jspx',
         department: {
-          bm: 'tableListByDept/%s.jspx',
+          bm: 'tableListByDept2/%s.jspx',
           gr: 'table_list_Sort.jspx',
           qy: 'table_list_Sort.jspx'
         },
@@ -43,7 +43,7 @@ module.exports = function () {
       wssb: {
         index: 'wssbindex.jspx',
         department: {
-          bm: 'wssb/%s.jspx',
+          bm: 'wssb2/%s.jspx',
           gr: 'wssb_list_Sort.jspx',
           // 'wssb_list_Sort.jspx?sortcode=001001008&areaid=421281&type=gr'
           qy: 'wssb_list_Sort.jspx'
