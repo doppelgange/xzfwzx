@@ -1,11 +1,8 @@
 <template>
   <div class="homepage">
     <div class="title">
-      <a href="cloudjs://pushPoliticsViewController?params={&quot;title&quot;:&quot;民声&quot;}">
-      <!-- <img class="logo" src="../assets/icons/szfwzx.svg"> -->
-      <img src="../assets/ms.png" style="width:90%">
-      </a>
-      <!-- <h1> {{govInfo.homepageTitle}}</h1> -->
+      <img class="logo" src="../assets/icons/szfwzx.svg">
+      <h1> {{govInfo.homepageTitle}}</h1>
     </div>
     <flexbox>
       <flexbox-item>
